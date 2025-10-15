@@ -18,3 +18,19 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+// cypress/support/e2e.js
+
+import './commands';
+import 'cypress-mochawesome-reporter/register';
+
+
+beforeEach(() => {
+  cy.clearCookies();
+  cy.clearLocalStorage();
+  
+});
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+  // Prevent Cypress from failing on uncaught exceptions
+  return false;
+});
